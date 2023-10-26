@@ -40,8 +40,8 @@ class DatabasePool
     {
         return new Database([
             'type' => $config['adapter'] ?? 'mysql',
-            'database' => $config['database'],
             'host' => $config['host'],
+            'database' => $config['database'],
             'username' => $config['username'],
             'password' => $config['password'],
             'charset' => $config['charset'] ?? 'utf8',
