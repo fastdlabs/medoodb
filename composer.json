@@ -1,9 +1,9 @@
 {
-  "name": "fastd/database",
+  "name": "fastd/medoodb",
   "type": "library",
   "license": "MIT",
   "minimum-stability": "stable",
-  "keywords": ["medoo", "fastd"],
+  "keywords": ["medoo", "msyql","fastd"],
   "homepage": "https://fastdlabs.com/",
   "authors": [
     {
