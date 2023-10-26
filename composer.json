@@ -1,5 +1,5 @@
 {
-  "name": "fastd/medoo-provider",
+  "name": "fastd/database",
   "type": "library",
   "license": "MIT",
   "minimum-stability": "stable",
@@ -24,9 +24,19 @@
   "require": {
     "php": "^7.4 || ^8.0",
     "catfan/medoo": "^2.1",
-    "fastd/container": "dev-develop"
+    "ext-pdo": "*"
   },
   "config": {
     "bin-dir": "bin"
+  },
+  "require-dev": {
+    "fastd/fastd": "dev-develop",
+    "fastd/container": "dev-develop",
+    "fastd/config": "dev-develop",
+    "fastd/middleware": "dev-develop",
+    "fastd/routing": "dev-develop",
+    "fastd/http": "dev-develop",
+    "fastd/swoole": "dev-develop",
+    "phpunit/phpunit": "^9.6"
   }
 }

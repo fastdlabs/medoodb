@@ -5,7 +5,7 @@ namespace FastD\MedooProvider;
 use FastD\Container\Container;
 use FastD\Container\ServiceProviderInterface;
 
-class MedooProvider implements ServiceProviderInterface
+class DatabaseServiceProvider implements ServiceProviderInterface
 {
     public function register(Container $container): void
     {
