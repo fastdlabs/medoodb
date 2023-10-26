@@ -1,0 +1,32 @@
+{
+  "name": "fastd/medoo-provider",
+  "type": "library",
+  "license": "MIT",
+  "minimum-stability": "stable",
+  "keywords": ["medoo", "fastd"],
+  "homepage": "https://fastdlabs.com/",
+  "authors": [
+    {
+      "name": "janhuang",
+      "email": "bboyjanhuang@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "FastD\\MedooProvider\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "tests\\": "tests"
+    }
+  },
+  "require": {
+    "php": "^7.4 || ^8.0",
+    "catfan/medoo": "^2.1",
+    "fastd/container": "dev-develop"
+  },
+  "config": {
+    "bin-dir": "bin"
+  }
+}
