@@ -1,6 +1,6 @@
 <?php
 
-namespace FastD\MedooProvider;
+namespace FastD\Database;
 
 
 class DatabasePool
