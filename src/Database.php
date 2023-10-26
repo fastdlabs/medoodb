@@ -1,6 +1,6 @@
 <?php
 
-namespace FastD\Database;
+namespace FastD\MedooDB;
 
 use Medoo\Medoo;
 use PDO;

@@ -13,7 +13,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "FastD\\Database\\": "src"
+      "FastD\\MedooDB\\": "src"
     }
   },
   "autoload-dev": {

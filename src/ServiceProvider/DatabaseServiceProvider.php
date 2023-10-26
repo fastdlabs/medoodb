@@ -1,10 +1,10 @@
 <?php
 
-namespace FastD\Database\ServiceProvider;
+namespace FastD\MedooDB\ServiceProvider;
 
 use FastD\Container\Container;
 use FastD\Container\ServiceProviderInterface;
-use FastD\Database\DatabasePool;
+use FastD\MedooDB\DatabasePool;
 
 class DatabaseServiceProvider implements ServiceProviderInterface
 {

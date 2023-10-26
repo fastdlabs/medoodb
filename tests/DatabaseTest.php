@@ -4,9 +4,9 @@ namespace tests;
 
 use FastD\Config\Config;
 use FastD\Container\Container;
-use FastD\Database\Database;
-use FastD\Database\DatabasePool;
-use FastD\Database\ServiceProvider\DatabaseServiceProvider;
+use FastD\MedooDB\Database;
+use FastD\MedooDB\DatabasePool;
+use FastD\MedooDB\ServiceProvider\DatabaseServiceProvider;
 use FastD\Runtime\Runtime;
 use Medoo\Medoo;
 use PHPUnit\Framework\TestCase;
