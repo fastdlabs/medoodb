@@ -1,13 +1,10 @@
 <?php
 
-namespace tests;
 
-use FastD\Config\Config;
-use FastD\Container\Container;
+use FastD\Application;
 use FastD\MedooDB\Database;
 use FastD\MedooDB\DatabasePool;
 use FastD\MedooDB\ServiceProvider\DatabaseServiceProvider;
-use FastD\Runtime\Runtime;
 use Medoo\Medoo;
 use PHPUnit\Framework\TestCase;
 
@@ -34,16 +31,18 @@ class DatabaseTest extends TestCase
 
     public function testServiceProvider()
     {
-        $container = new Container();
-        $config = new Config();
-        $config->merge([
-            'database' => load(__DIR__ . '/database.php')
+        $application = new Application([
+            'env' => 'tests',
+            'path' => __DIR__,
+            'app' => [],
+            'routes' => [],
+            'services' => [],
+            'database' => __DIR__ . '/database.php',
         ]);
-        $container->add('config', $config);
-        Runtime::$container = $container;
+        $server = new \FastD\Server\FastCGI($application);
         $serviceProvider = new DatabaseServiceProvider();
-        $container->register($serviceProvider);
-        $database = $container->get('database')->getDatabase('local');
+        $application->register($serviceProvider);
+        $database = $application->get('database')->getDatabase('local');
         $this->assertInstanceOf(Database::class, $database);
         $this->assertInstanceOf(Medoo::class, $database);
     }

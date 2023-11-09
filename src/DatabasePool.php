@@ -29,7 +29,7 @@ class DatabasePool
     {
         if ($reconnect || !isset($this->connections[$key])) {
             if (!isset($this->config[$key])) {
-                throw new \LogicException(sprintf('No set %s database', $key));
+                throw new \LogicException(sprintf('No set "%s" database', $key));
             }
             $this->connections[$key] = $this->connect($this->config[$key]);
         }

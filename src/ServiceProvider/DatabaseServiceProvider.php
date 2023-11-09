@@ -10,10 +10,9 @@ class DatabaseServiceProvider implements ServiceProviderInterface
 {
     public function register(Container $container): void
     {
-        $config = config()->load(runtime()->getPath() . '/src/config/database.php');
-
+        $config = app()->getBootstrap('database');
+        config()->merge(['database' => $config]);
         $container->add('database', new DatabasePool($config));
-
         unset($config);
     }
 }
