@@ -8,10 +8,13 @@ use FastD\MedooDB\DatabasePool;
 
 class DatabaseServiceProvider implements ServiceProviderInterface
 {
+    /**
+     * @throws \ErrorException
+     */
     public function register(Container $container): void
     {
-        $config = app()->getBootstrap('database');
-        config()->merge(['database' => $config]);
+        $config = config()->replace(app()->getBootstrap('database'));
+        config()->add(['database' => $config]);
         $container->add('database', new DatabasePool($config));
         unset($config);
     }
