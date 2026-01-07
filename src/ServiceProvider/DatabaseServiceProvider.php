@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace FastD\MedooDB\ServiceProvider;
 
 use FastD\Container\Container;
@@ -8,14 +10,10 @@ use FastD\MedooDB\DatabasePool;
 
 class DatabaseServiceProvider implements ServiceProviderInterface
 {
-    /**
-     * @throws \ErrorException
-     */
     public function register(Container $container): void
     {
-        $config = config()->replace(app()->getBootstrap('database'));
-        config()->add(['database' => $config]);
-        $container->add('database', new DatabasePool($config));
-        unset($config);
+        $dbPool = new DatabasePool($container->need('database'));
+        $container->add('medoodb', $dbPool);
+        $container->add('onWorkerStart', [$dbPool]);
     }
 }

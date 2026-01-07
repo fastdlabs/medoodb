@@ -1,28 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace FastD\MedooDB;
 
+use Exception;
 use Medoo\Medoo;
 use PDO;
 use PDOStatement;
 
 class Database extends Medoo
 {
-    /**
-     * @var array
-     */
-    protected array $config = [];
-
-    /**
-     * @var PDO
-     */
-    public $pdo;
-
-    public function __construct(array $config)
+    public function __construct(protected array $config)
     {
-        $this->config = $config;
-
-        parent::__construct($this->config);
+        parent::__construct($config);
 
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
@@ -30,10 +21,7 @@ class Database extends Medoo
         $this->pdo->setAttribute(PDO::ATTR_STRINGIFY_FETCHES, false);
     }
 
-    /**
-     * reconnect database.
-     */
-    public function reconnect()
+    public function reconnect(): void
     {
         $this->__construct($this->config);
     }
@@ -42,17 +30,17 @@ class Database extends Medoo
     {
         try {
             return parent::query($statement, $map);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->reconnect();
             return parent::query($statement, $map);
         }
     }
 
-    public function exec(string $statement, array $map = [], callable $callback = null): ?PDOStatement
+    public function exec(string $statement, array $map = [], ?callable $callback = null): ?PDOStatement
     {
         try {
             return parent::exec($statement, $map, $callback);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->reconnect();
             return parent::exec($statement, $map, $callback);
         }

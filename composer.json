@@ -2,7 +2,7 @@
   "name": "fastd/medoodb",
   "type": "library",
   "license": "MIT",
-  "minimum-stability": "stable",
+  "minimum-stability": "dev",
   "keywords": ["medoo", "msyql","fastd"],
   "homepage": "https://fastdlabs.com/",
   "authors": [
@@ -22,12 +22,9 @@
     }
   },
   "require": {
-    "php": "^7.4 || ^8.0",
+    "php": ">=8.2",
     "catfan/medoo": "^2.1",
     "ext-pdo": "*"
-  },
-  "config": {
-    "bin-dir": "bin"
   },
   "require-dev": {
     "fastd/fastd": "dev-develop",

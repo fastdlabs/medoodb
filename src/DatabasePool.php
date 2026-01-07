@@ -1,35 +1,25 @@
 <?php
 
+declare(strict_types=1);
+
 namespace FastD\MedooDB;
 
+use FastD\Server\Events\CallbackEventsInterface;
+use RuntimeException;
 
-class DatabasePool
+class DatabasePool implements CallbackEventsInterface
 {
-    /**
-     * @var Database[]
-     */
     protected array $connections = [];
 
-    /**
-     * @var array
-     */
-    protected array $config;
-
-    /**
-     * Database constructor.
-     *
-     * @param array $config
-     */
-    public function __construct(array $config)
+    public function __construct(protected array $config)
     {
-        $this->config = $config;
     }
 
     public function getDatabase(string $key, bool $reconnect = false): Database
     {
         if ($reconnect || !isset($this->connections[$key])) {
             if (!isset($this->config[$key])) {
-                throw new \LogicException(sprintf('No set "%s" database', $key));
+                throw new RuntimeException(sprintf('No set "%s" database', $key));
             }
             $this->connections[$key] = $this->connect($this->config[$key]);
         }
@@ -39,23 +29,29 @@ class DatabasePool
     protected function connect(array $config): Database
     {
         return new Database([
-            'type' => $config['adapter'] ?? 'mysql',
-            'host' => $config['host'],
-            'database' => $config['database'],
-            'username' => $config['username'],
-            'password' => $config['password'],
-            'charset' => $config['charset'] ?? 'utf8',
-            'port' => $config['port'] ?? 3306,
-            'prefix' => $config['prefix'] ?? '',
-            'option' => $config['option'] ?? [],
-            'command' => $config['command'] ?? [],
+            'type'      => $config['adapter'] ?? 'mysql',
+            'host'      => $config['host'],
+            'database'  => $config['database'],
+            'username'  => $config['username'],
+            'password'  => $config['password'],
+            'charset'   => $config['charset'] ?? 'utf8',
+            'port'      => $config['port'] ?? 3306,
+            'prefix'    => $config['prefix'] ?? '',
+            'option'    => $config['option'] ?? [],
+            'command'   => $config['command'] ?? [],
         ]);
     }
 
-    public function initConnections()
+    public function initConnections(): void
     {
         foreach ($this->config as $name => $config) {
             $this->connections[$name] = $this->connect($config);
         }
+    }
+
+    public function onCallback(): bool
+    {
+        $this->initConnections();
+        return true;
     }
 }
