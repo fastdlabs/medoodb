@@ -12,7 +12,7 @@ class DatabaseServiceProvider implements ServiceProviderInterface
 {
     public function register(Container $container): void
     {
-        $dbPool = new DatabasePool($container->need('database'));
+        $dbPool = new DatabasePool($container->config('database'));
         $container->add('medoodb', $dbPool);
         $container->add('onWorkerStart', [$dbPool]);
     }

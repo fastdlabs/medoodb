@@ -2,15 +2,15 @@
   "name": "fastd/medoodb",
   "type": "library",
   "license": "MIT",
-  "minimum-stability": "dev",
   "keywords": ["medoo", "msyql","fastd"],
   "homepage": "https://fastdlabs.com/",
-  "authors": [
-    {
-      "name": "janhuang",
-      "email": "bboyjanhuang@gmail.com"
-    }
-  ],
+  "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "JanHuang",
+            "email": "384099566@qq.com"
+        }
+    ],
   "autoload": {
     "psr-4": {
       "FastD\\MedooDB\\": "src"
