@@ -7,6 +7,7 @@ namespace FastD\MedooDB\ServiceProvider;
 use FastD\Container\Container;
 use FastD\Container\ServiceProviderInterface;
 use FastD\MedooDB\DatabasePool;
+use FastD\MedooDB\Listener\BootedEventListener;
 
 class DatabaseServiceProvider implements ServiceProviderInterface
 {
@@ -14,6 +15,6 @@ class DatabaseServiceProvider implements ServiceProviderInterface
     {
         $dbPool = new DatabasePool($container->config('database'));
         $container->add('medoodb', $dbPool);
-        $container->add('onWorkerStart', [$dbPool]);
+        $container->got('event')->addListener(new BootedEventListener());
     }
 }

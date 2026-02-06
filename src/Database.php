@@ -17,8 +17,19 @@ class Database extends Medoo
 
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-        $this->pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $this->pdo->setAttribute(PDO::ATTR_STRINGIFY_FETCHES, false);
+        
+        // 对于SQLite等驱动，某些属性可能不受支持
+        try {
+            $this->pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        } catch (\PDOException $e) {
+            // 忽略不支持的属性设置
+        }
+        
+        try {
+            $this->pdo->setAttribute(PDO::ATTR_STRINGIFY_FETCHES, false);
+        } catch (\PDOException $e) {
+            // 忽略不支持的属性设置
+        }
     }
 
     public function reconnect(): void

@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace FastD\MedooDB;
 
-use FastD\Server\Events\CallbackEventsInterface;
 use RuntimeException;
 
-class DatabasePool implements CallbackEventsInterface
+class DatabasePool
 {
     protected array $connections = [];
 
@@ -47,11 +46,5 @@ class DatabasePool implements CallbackEventsInterface
         foreach ($this->config as $name => $config) {
             $this->connections[$name] = $this->connect($config);
         }
-    }
-
-    public function onCallback(): bool
-    {
-        $this->initConnections();
-        return true;
     }
 }
