@@ -15,6 +15,6 @@ class DatabaseServiceProvider implements ServiceProviderInterface
     {
         $dbPool = new DatabasePool($container->config('database'));
         $container->add('medoodb', $dbPool);
-        $container->got('event')->addListener(new BootedEventListener());
+        $container->get('event')->addListener(new BootedEventListener());
     }
 }

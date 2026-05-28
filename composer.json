@@ -23,17 +23,10 @@
   },
   "require": {
     "php": ">=8.2",
-    "catfan/medoo": "^2.1",
+    "catfan/medoo": "^2.4",
     "ext-pdo": "*"
   },
   "require-dev": {
-    "fastd/fastd": "dev-develop",
-    "fastd/container": "dev-develop",
-    "fastd/config": "dev-develop",
-    "fastd/middleware": "dev-develop",
-    "fastd/routing": "dev-develop",
-    "fastd/http": "dev-develop",
-    "fastd/swoole": "dev-develop",
     "phpunit/phpunit": "^9.6"
   }
 }
