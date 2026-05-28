@@ -4,7 +4,6 @@
   "license": "MIT",
   "keywords": ["medoo", "msyql","fastd"],
   "homepage": "https://fastdlabs.com/",
-  "minimum-stability": "dev",
     "authors": [
         {
             "name": "JanHuang",
