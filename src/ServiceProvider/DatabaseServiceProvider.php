@@ -13,8 +13,20 @@ class DatabaseServiceProvider implements ServiceProviderInterface
 {
     public function register(Container $container): void
     {
-        $dbPool = new DatabasePool($container->config('database'));
+        // 从容器获取数据库配置
+        if ($container->has('config')) {
+            $config = $container->get('config');
+            $dbConfig = is_array($config) ? ($config['database'] ?? []) : [];
+        } else {
+            $dbConfig = [];
+        }
+        
+        $dbPool = new DatabasePool($dbConfig);
         $container->add('medoodb', $dbPool);
-        $container->get('event')->addListener(new BootedEventListener());
+        
+        // 如果事件组件可用，注册监听器
+        if ($container->has('event')) {
+            $container->get('event')->addListener(new BootedEventListener());
+        }
     }
 }

@@ -27,6 +27,12 @@ class DatabasePool
 
     protected function connect(array $config): Database
     {
+        // 支持 SQLite 等使用 'type' 的配置格式
+        if (isset($config['type'])) {
+            return new Database($config);
+        }
+        
+        // 原有的 MySQL 配置格式
         return new Database([
             'type'      => $config['adapter'] ?? 'mysql',
             'host'      => $config['host'],
