@@ -22,7 +22,7 @@
   },
   "require": {
     "php": ">=8.2",
-    "catfan/Medoo": "^2.2",
+    "catfan/medoo": "^2.2",
     "ext-pdo": "*"
   },
   "require-dev": {
