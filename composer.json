@@ -26,6 +26,12 @@
     "ext-pdo": "*"
   },
   "require-dev": {
-    "phpunit/phpunit": "^9.6"
+    "phpunit/phpunit": "^9.6",
+    "fastd/fastd": "^8.1"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "8.0.x-dev"
+    }
   }
 }
