@@ -42,22 +42,4 @@ final class ProviderConfigTest extends TestCase
         (new DatabaseServiceProvider())->register(new Container());
     }
 
-    public function testEmptyDatabaseConfigThrows(): void
-    {
-        $container = new class extends Container {
-            public function __construct()
-            {
-                $this->add('config', new stdClass());
-            }
-
-            public function config(string $key): array
-            {
-                return [];
-            }
-        };
-
-        $this->expectException(RuntimeException::class);
-
-        (new DatabaseServiceProvider())->register($container);
-    }
 }

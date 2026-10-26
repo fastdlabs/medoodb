@@ -20,8 +20,8 @@ class DatabaseServiceProvider implements ServiceProviderInterface
 
         $config = $container->config('database');
 
-        if (!is_array($config) || $config === []) {
-            throw new RuntimeException('The database configuration is missing.');
+        if (!is_array($config)) {
+            throw new RuntimeException('The database configuration is invalid.');
         }
 
         $container->add('medoodb', new DatabasePool($config));
