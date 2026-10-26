@@ -139,33 +139,45 @@ class DatabaseTest extends TestCase
 
     public function testDatabaseServiceProvider()
     {
-        $container = new Container();
-        $container->add('config', ['database' => $this->testConfig]);
-        
-        $serviceProvider = new DatabaseServiceProvider();
-        $serviceProvider->register($container);
-        
+        $container = new class($this->testConfig) extends Container {
+            public function __construct(private array $config)
+            {
+                $this->add('config', new stdClass());
+            }
+
+            public function config(string $key): array
+            {
+                return $this->config;
+            }
+        };
+
+        (new DatabaseServiceProvider())->register($container);
+
         $dbPool = $container->get('medoodb');
         $this->assertInstanceOf(DatabasePool::class, $dbPool);
-        
+
         $database = $dbPool->getDatabase('local');
         $this->assertInstanceOf(Database::class, $database);
     }
 
     public function testDatabaseServiceProviderRegistrationWithApplication()
     {
-        // 模拟在应用中注册服务提供者
-        $container = new Container();
-        $container->add('config', $this->testConfig);
-        
-        $serviceProvider = new DatabaseServiceProvider();
-        $serviceProvider->register($container);
-        
-        // 验证服务被正确注册
+        $container = new class($this->testConfig) extends Container {
+            public function __construct(private array $config)
+            {
+                $this->add('config', new stdClass());
+            }
+
+            public function config(string $key): array
+            {
+                return $this->config;
+            }
+        };
+
+        (new DatabaseServiceProvider())->register($container);
+
         $this->assertTrue($container->has('medoodb'));
-        
-        $dbPool = $container->get('medoodb');
-        $this->assertInstanceOf(DatabasePool::class, $dbPool);
+        $this->assertInstanceOf(DatabasePool::class, $container->get('medoodb'));
     }
 
     public function testDatabasePoolInternalConnectionsArray()
