@@ -25,14 +25,14 @@
         }
     },
     "require": {
-        "php": ">=8.4",
+        "php": ">=8.4.1",
         "catfan/medoo": "^2.2",
         "ext-pdo": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "^10.0",
+        "phpunit/phpunit": "^13.4",
         "fastd/fastd": "^8.1",
-        "phpstan/phpstan": "^1.12.24"
+        "phpstan/phpstan": "^2.3"
     },
     "extra": {
         "branch-alias": {
