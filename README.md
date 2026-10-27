@@ -1,6 +1,6 @@
 # FastD MedooDB
 
-[![Build Status](https://travis-ci.org/fastdlabs/medoodb.svg?branch=master)](https://travis-ci.org/fastdlabs/medoodb)
+[![CI](https://github.com/fastdlabs/medoodb/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/fastdlabs/medoodb/actions/workflows/ci.yml)
 [![Latest Stable Version](https://poser.pugx.org/fastd/medoodb/v/stable)](https://packagist.org/packages/fastd/medoodb) 
 [![Total Downloads](https://poser.pugx.org/fastd/medoodb/downloads)](https://packagist.org/packages/fastd/medoodb) 
 [![License](https://poser.pugx.org/fastd/medoodb/license)](https://packagist.org/packages/fastd/medoodb)
