@@ -8,10 +8,8 @@ use FastD\MedooDB\Database;
 use FastD\MedooDB\DatabasePool;
 use FastD\MedooDB\ServiceProvider\DatabaseServiceProvider;
 use Medoo\Medoo;
-use PDO;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
-use RuntimeException;
 
 class DatabaseTest extends TestCase
 {
