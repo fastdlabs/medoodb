@@ -18,7 +18,7 @@ FastD MedooDB 是基于 Medoo 的数据库组件，提供简洁的数据库操�
 
 ## 📋 环境要求
 
-- **PHP**: >= 8.2
+- **PHP**: >= 8.4.1
 - **扩展**: 
   - ext-pdo
   - ext-pdo_mysql (MySQL)
