@@ -1,5 +1,6 @@
 {
     "name": "fastd/medoodb",
+    "description": "Medoo-based database component with connection pooling and FastD integration.",
     "type": "library",
     "license": "MIT",
     "keywords": [
